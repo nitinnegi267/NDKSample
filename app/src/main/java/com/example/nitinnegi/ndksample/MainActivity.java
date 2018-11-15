@@ -3,11 +3,15 @@ package com.example.nitinnegi.ndksample;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private EditText mEditTextNew;
+    private Button mBtnNew;
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -23,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Example of a call to a native method
         mEditText = findViewById(R.id.sample_edit_text);
+
+        mEditTextNew = findViewById(R.id.sample_edit_text_new);
+        mBtnNew = findViewById(R.id.newButton);
+
+        mBtnNew.setOnClickListener(this);
 
     }
 
@@ -44,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(this, "Enter the number", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.newButton:
+                Toast.makeText(this, "New Button Clicked", Toast.LENGTH_LONG).show();
+                break;
         }
     }
 }
